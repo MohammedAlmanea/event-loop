@@ -1,9 +1,19 @@
-console.log("Print Fifth");
+const fs = require('fs');
 
-console.log("Print Third");
+process.on('beforeExit',() => {
+    console.log('Print Fifth');
+});
 
+fs.readFile(__filename , () => {
+    console.log('Print Third');
+});
+
+setImmediate(() => {
 console.log('Print Second');
+});
 
 console.log('Print First');
 
-console.log("Print Forth");
+setTimeout(() => {
+    console.log('Print Forth');
+},1000);
